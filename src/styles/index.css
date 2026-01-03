@@ -27,3 +27,92 @@ input, textarea, select {
   font-family: inherit;
 }
 
+/* Common button styles */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-primary.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  background: var(--color-border);
+}
+
+/* Common form input styles */
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-input.small {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Common option button styles */
+.option-button {
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.option-button:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.option-button.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+

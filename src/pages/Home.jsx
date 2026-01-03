@@ -1,20 +1,18 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getStorage, STORAGE_KEYS } from '../utils/storage'
+import { useAppContext } from '../contexts/AppContext'
 import { getTranslation } from '../utils/translations'
 import './Home.css'
 
 const Home = () => {
-  const settings = getStorage(STORAGE_KEYS.SETTINGS, { language: 'en' })
-  const profile = getStorage(STORAGE_KEYS.PROFILE, {})
-  const lang = settings.language || 'en'
+  const { profile, language } = useAppContext()
+  const lang = language || 'en'
 
   return (
     <div className="home">
       <h1>
         {getTranslation('home', lang)} - GymVault
       </h1>
-      {profile.name && (
+      {profile?.name && (
         <p className="welcome-message">
           Welcome back, {profile.name}!
         </p>
@@ -42,4 +40,3 @@ const Home = () => {
 }
 
 export default Home
-

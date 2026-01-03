@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { getStorage, STORAGE_KEYS } from '../utils/storage'
+import { useAppContext } from '../contexts/AppContext'
 import { getTranslation } from '../utils/translations'
 import './Layout.css'
 
 const Layout = ({ children }) => {
   const location = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const settings = getStorage(STORAGE_KEYS.SETTINGS, { language: 'en' })
-  const lang = settings.language || 'en'
+  const { language } = useAppContext()
+  const lang = language || 'en'
 
   const navItems = [
     { path: '/', label: 'home' },
@@ -60,4 +60,3 @@ const Layout = ({ children }) => {
 }
 
 export default Layout
-

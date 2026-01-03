@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { getTranslation } from '../utils/translations'
-import './Onboarding.css'
+import { initDemoData } from '../utils/storage'
+import OnboardingStep1 from './OnboardingStep1'
+import OnboardingStep2 from './OnboardingStep2'
+import OnboardingStep3 from './OnboardingStep3'
+import OnboardingStep4 from './OnboardingStep4'
+import OnboardingStep5 from './OnboardingStep5'
+import OnboardingStep6 from './OnboardingStep6'
+import styles from './Onboarding.module.css'
+import '../styles/index.css'
 
 const Onboarding = ({ onComplete }) => {
   const [step, setStep] = useState(1)
@@ -15,15 +23,16 @@ const Onboarding = ({ onComplete }) => {
     language: 'en',
     theme: 'colorful',
     trainer: 'ai',
+    demoMode: false,
   })
 
-  const totalSteps = 7
+  const totalSteps = 6
 
   const handleNext = () => {
     if (step < totalSteps) {
       setStep(step + 1)
     } else {
-      onComplete(data)
+      handleComplete()
     }
   }
 
@@ -33,179 +42,101 @@ const Onboarding = ({ onComplete }) => {
     }
   }
 
+  const handleComplete = () => {
+    // If demo mode was selected, initialize demo data
+    if (data.demoMode) {
+      initDemoData()
+    }
+    onComplete(data)
+  }
+
   const updateData = (key, value) => {
     setData({ ...data, [key]: value })
   }
 
   const lang = data.language || 'en'
 
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <OnboardingStep1
+            data={data}
+            updateData={updateData}
+            language={lang}
+          />
+        )
+      case 2:
+        return (
+          <OnboardingStep2
+            data={data}
+            updateData={updateData}
+            language={lang}
+          />
+        )
+      case 3:
+        return (
+          <OnboardingStep3
+            data={data}
+            updateData={updateData}
+            language={lang}
+            units={data.units}
+          />
+        )
+      case 4:
+        return (
+          <OnboardingStep4
+            data={data}
+            updateData={updateData}
+            language={lang}
+          />
+        )
+      case 5:
+        return (
+          <OnboardingStep5
+            data={data}
+            updateData={updateData}
+            language={lang}
+          />
+        )
+      case 6:
+        return (
+          <OnboardingStep6
+            data={data}
+            updateData={updateData}
+            language={lang}
+          />
+        )
+      default:
+        return null
+    }
+  }
+
   return (
-    <div className="onboarding">
-      <div className="onboarding-container">
-        <div className="onboarding-progress">
+    <div className={styles.onboarding}>
+      <div className={styles.container}>
+        <div className={styles.progress}>
           <div
-            className="progress-bar"
+            className={styles.progressBar}
             style={{ width: `${(step / totalSteps) * 100}%` }}
           />
         </div>
 
-        <div className="onboarding-content">
-          {step === 1 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep1', lang)}</h2>
-              <input
-                type="text"
-                placeholder={getTranslation('name', lang)}
-                value={data.name}
-                onChange={(e) => updateData('name', e.target.value)}
-                className="onboarding-input"
-                autoFocus
-              />
-            </div>
-          )}
+        <div className={styles.content}>{renderStep()}</div>
 
-          {step === 2 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep2', lang)}</h2>
-              <input
-                type="number"
-                placeholder={getTranslation('height', lang)}
-                value={data.height}
-                onChange={(e) => updateData('height', e.target.value)}
-                className="onboarding-input"
-              />
-              <input
-                type="number"
-                placeholder={getTranslation('weight', lang)}
-                value={data.weight}
-                onChange={(e) => updateData('weight', e.target.value)}
-                className="onboarding-input"
-              />
-              <input
-                type="number"
-                placeholder={getTranslation('age', lang)}
-                value={data.age}
-                onChange={(e) => updateData('age', e.target.value)}
-                className="onboarding-input"
-              />
-              <select
-                value={data.gender}
-                onChange={(e) => updateData('gender', e.target.value)}
-                className="onboarding-input"
-              >
-                <option value="">{getTranslation('gender', lang)}</option>
-                <option value="male">{getTranslation('male', lang)}</option>
-                <option value="female">{getTranslation('female', lang)}</option>
-                <option value="other">{getTranslation('other', lang)}</option>
-              </select>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep3', lang)}</h2>
-              <div className="onboarding-options">
-                {['muscleGain', 'fatLoss', 'strength', 'maintenance', 'custom'].map((goal) => (
-                  <button
-                    key={goal}
-                    className={`option-button ${data.goal === goal ? 'active' : ''}`}
-                    onClick={() => updateData('goal', goal)}
-                  >
-                    {getTranslation(goal, lang)}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep4', lang)}</h2>
-              <div className="onboarding-options">
-                <button
-                  className={`option-button ${data.units === 'cm' ? 'active' : ''}`}
-                  onClick={() => updateData('units', 'cm')}
-                >
-                  cm
-                </button>
-                <button
-                  className={`option-button ${data.units === 'inches' ? 'active' : ''}`}
-                  onClick={() => updateData('units', 'inches')}
-                >
-                  inches
-                </button>
-              </div>
-            </div>
-          )}
-
-          {step === 5 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep5', lang)}</h2>
-              <div className="onboarding-options">
-                <button
-                  className={`option-button ${data.language === 'en' ? 'active' : ''}`}
-                  onClick={() => updateData('language', 'en')}
-                >
-                  English
-                </button>
-                <button
-                  className={`option-button ${data.language === 'ua' ? 'active' : ''}`}
-                  onClick={() => updateData('language', 'ua')}
-                >
-                  Українська
-                </button>
-              </div>
-            </div>
-          )}
-
-          {step === 6 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep6', lang)}</h2>
-              <div className="onboarding-options">
-                {['colorful', 'light', 'dark'].map((theme) => (
-                  <button
-                    key={theme}
-                    className={`option-button ${data.theme === theme ? 'active' : ''}`}
-                    onClick={() => updateData('theme', theme)}
-                  >
-                    {getTranslation(theme, lang)}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {step === 7 && (
-            <div className="onboarding-step">
-              <h2>{getTranslation('onboardingStep7', lang)}</h2>
-              <div className="onboarding-options">
-                <button
-                  className={`option-button ${data.trainer === 'human' ? 'active' : ''}`}
-                  onClick={() => updateData('trainer', 'human')}
-                >
-                  {getTranslation('humanTrainer', lang)}
-                </button>
-                <button
-                  className={`option-button ${data.trainer === 'ai' ? 'active' : ''}`}
-                  onClick={() => updateData('trainer', 'ai')}
-                >
-                  {getTranslation('aiTrainer', lang)}
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="onboarding-actions">
+        <div className={styles.actions}>
           {step > 1 && (
-            <button onClick={handleBack} className="onboarding-button secondary">
+            <button
+              onClick={handleBack}
+              className={`${styles.button} ${styles.buttonSecondary}`}
+            >
               {getTranslation('back', lang)}
             </button>
           )}
           <button
             onClick={handleNext}
-            className="onboarding-button primary"
-            disabled={step === 1 && !data.name}
+            className={`${styles.button} ${styles.buttonPrimary}`}
+            disabled={step === 2 && !data.name}
           >
             {step === totalSteps
               ? getTranslation('finish', lang)
@@ -218,4 +149,3 @@ const Onboarding = ({ onComplete }) => {
 }
 
 export default Onboarding
-

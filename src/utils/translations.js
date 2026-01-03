@@ -39,6 +39,10 @@ export const translations = {
     finish: 'Finish',
     humanTrainer: 'Human Trainer',
     aiTrainer: 'AI Trainer',
+    demoMode: 'Demo Mode',
+    loginDisabled: 'Login feature coming soon',
+    comingSoon: 'Coming Soon',
+    scheduleComingSoon: 'Schedule feature coming soon',
     
     // Exercises
     addExercise: 'Add Exercise',
@@ -148,6 +152,10 @@ export const translations = {
     finish: 'Завершити',
     humanTrainer: 'Людський тренер',
     aiTrainer: 'AI Тренер',
+    demoMode: 'Демо режим',
+    loginDisabled: 'Функція входу скоро з\'явиться',
+    comingSoon: 'Скоро',
+    scheduleComingSoon: 'Функція розкладу скоро з\'явиться',
     
     // Exercises
     addExercise: 'Додати вправу',

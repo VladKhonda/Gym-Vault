@@ -23,6 +23,7 @@ A comprehensive fitness & bodybuilding knowledge vault with workout builder, jou
 - CSS Modules
 - Chart.js (for radar charts)
 - React Router
+- React Context API (for state management)
 
 ## Getting Started
 
@@ -38,25 +39,45 @@ npm run dev
 
 3. Open your browser to the URL shown in the terminal (typically http://localhost:5173)
 
-## First Launch
+## Onboarding
 
-On first launch, you'll be guided through an onboarding wizard to set up your profile, preferences, and goals.
+On first launch, you'll be guided through a 6-step onboarding wizard:
+
+1. **Welcome Screen**: Choose your language and access demo mode
+2. **Name & Units**: Enter your name and select measurement units (cm/kg or inches/lbs)
+3. **Profile**: Enter your height, weight, age, and gender
+4. **Fitness Goals**: Select your primary fitness goal (muscle gain, fat loss, strength, etc.)
+5. **AI Trainer**: Choose your trainer type (AI Trainer available, Human Trainer coming soon)
+6. **Theme**: Select your preferred theme (Colorful, Light, or Dark)
+
+### Demo Mode
+
+During onboarding, you can click "Demo Mode" on the welcome screen to automatically populate the app with sample exercises and data. This is useful for exploring the app's features without manual data entry.
 
 ## Project Structure
 
 ```
 src/
   components/     # Reusable components
+    OnboardingStep1-6.jsx  # Individual onboarding steps
   pages/          # Page components
+  contexts/       # React Context providers
   utils/          # Utilities (storage, themes, translations, units)
-  styles/         # Global styles
+  styles/         # Global styles and CSS Modules
 ```
 
 ## Data Persistence
 
 All data is stored in browser localStorage. To reset demo data, go to Settings and click "Reset Demo Data".
 
+## Development Notes
+
+- The app uses React Context API for managing profile, settings, language, and units
+- Onboarding is accessible via `/onboarding` route
+- Common styles (buttons, inputs, etc.) are defined in `styles/index.css`
+- Component-specific styles use CSS Modules (`.module.css`)
+- Demo data is only initialized when "Demo Mode" is selected during onboarding
+
 ## License
 
 MIT
-

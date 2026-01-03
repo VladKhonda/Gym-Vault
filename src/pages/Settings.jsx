@@ -1,47 +1,18 @@
-import { useState, useEffect } from 'react'
-import { getStorage, setStorage, STORAGE_KEYS, removeStorage, initDemoData } from '../utils/storage'
+import { useAppContext } from '../contexts/AppContext'
 import { getTranslation } from '../utils/translations'
-import { applyTheme } from '../utils/themes'
+import { removeStorage, STORAGE_KEYS, initDemoData } from '../utils/storage'
 import './Settings.css'
 
 const Settings = () => {
-  const [profile, setProfile] = useState({})
-  const [settings, setSettings] = useState({
-    language: 'en',
-    units: 'cm',
-    theme: 'colorful',
-  })
+  const { profile, settings, updateProfile, updateSettings } = useAppContext()
   const lang = settings.language || 'en'
 
-  useEffect(() => {
-    loadSettings()
-  }, [])
-
-  const loadSettings = () => {
-    const storedProfile = getStorage(STORAGE_KEYS.PROFILE, {})
-    const storedSettings = getStorage(STORAGE_KEYS.SETTINGS, {
-      language: 'en',
-      units: 'cm',
-      theme: 'colorful',
-    })
-    setProfile(storedProfile)
-    setSettings(storedSettings)
-  }
-
   const handleProfileChange = (key, value) => {
-    const updated = { ...profile, [key]: value }
-    setProfile(updated)
-    setStorage(STORAGE_KEYS.PROFILE, updated)
+    updateProfile({ ...profile, [key]: value })
   }
 
   const handleSettingChange = (key, value) => {
-    const updated = { ...settings, [key]: value }
-    setSettings(updated)
-    setStorage(STORAGE_KEYS.SETTINGS, updated)
-    
-    if (key === 'theme') {
-      applyTheme(value)
-    }
+    updateSettings({ [key]: value })
     
     // Reload page to apply language changes
     if (key === 'language') {
@@ -71,7 +42,7 @@ const Settings = () => {
             <label>{getTranslation('name', lang)}</label>
             <input
               type="text"
-              value={profile.name || ''}
+              value={profile?.name || ''}
               onChange={(e) => handleProfileChange('name', e.target.value)}
               className="form-input"
             />
@@ -80,7 +51,7 @@ const Settings = () => {
             <label>{getTranslation('height', lang)}</label>
             <input
               type="number"
-              value={profile.height || ''}
+              value={profile?.height || ''}
               onChange={(e) => handleProfileChange('height', e.target.value)}
               className="form-input"
             />
@@ -89,7 +60,7 @@ const Settings = () => {
             <label>{getTranslation('weight', lang)}</label>
             <input
               type="number"
-              value={profile.weight || ''}
+              value={profile?.weight || ''}
               onChange={(e) => handleProfileChange('weight', e.target.value)}
               className="form-input"
             />
@@ -98,7 +69,7 @@ const Settings = () => {
             <label>{getTranslation('age', lang)}</label>
             <input
               type="number"
-              value={profile.age || ''}
+              value={profile?.age || ''}
               onChange={(e) => handleProfileChange('age', e.target.value)}
               className="form-input"
             />
@@ -106,7 +77,7 @@ const Settings = () => {
           <div className="form-group">
             <label>{getTranslation('gender', lang)}</label>
             <select
-              value={profile.gender || ''}
+              value={profile?.gender || ''}
               onChange={(e) => handleProfileChange('gender', e.target.value)}
               className="form-input"
             >
@@ -119,7 +90,7 @@ const Settings = () => {
           <div className="form-group">
             <label>{getTranslation('goal', lang)}</label>
             <select
-              value={profile.goal || ''}
+              value={profile?.goal || ''}
               onChange={(e) => handleProfileChange('goal', e.target.value)}
               className="form-input"
             >
@@ -196,4 +167,3 @@ const Settings = () => {
 }
 
 export default Settings
-
