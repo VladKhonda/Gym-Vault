@@ -1,0 +1,48 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home h1 {
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.welcome-message {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.home-card {
+  background: var(--color-card-bg);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  transition: all 0.2s;
+}
+
+.home-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.home-card h2 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.home-card p {
+  color: var(--color-text-secondary);
+}
+

@@ -1,0 +1,58 @@
+.workouts {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.workouts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.workouts-header h1 {
+  color: var(--color-text);
+}
+
+.workouts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.workout-card {
+  background: var(--color-card-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.workout-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.workout-exercises-count {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.workout-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background: var(--color-border);
+}
+

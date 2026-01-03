@@ -1,0 +1,121 @@
+.workout-execution {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.workout-execution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.workout-execution-header h1 {
+  color: var(--color-text);
+  font-size: 2rem;
+}
+
+.workout-progress {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+}
+
+.current-exercise {
+  background: var(--color-card-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.current-exercise h2 {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.exercise-target {
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+}
+
+.sets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.set-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border-radius: 0.5rem;
+}
+
+.set-number {
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 80px;
+}
+
+.set-completed {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+.checkmark {
+  color: var(--color-success);
+  font-size: 1.5rem;
+}
+
+.set-input {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-small {
+  padding: 0.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100px;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.input-small:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.btn-primary.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-primary.large {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.workout-actions-bottom {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-border);
+}
+
